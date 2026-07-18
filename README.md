@@ -1,4 +1,5 @@
 <h1>This is a concept project to build a simple pygame game</h1>
+<h4>So far this is just a simple window</h4>
 
 <h2>Setup:</h2>
 
