@@ -25,7 +25,18 @@ class Vanguard(Player):
         self.str = 5 + random.randint(0, 5)
         self.vit = 3 + random.randint(0, 3)
         self.int = 2 + random.randint(0, 2)
-        self.luck = 0 + random.randint(-6, 6)
+        self.luck = 0 + random.randint(-5, 5)
+
+    def calculate_critical_hit_multiplier(self):
+        chance = (self.luck * 0.01) * 0.05
+        overflow = int(chance/1) + 1
+        remaining_chance = chance % 1
+        return overflow + 1 if remaining_chance >= random.random() else overflow
+
+    def attack(self):
+        growth_rate = 1.035
+        base_damage = 5
+        return base_damage * (growth_rate ** self.str) * self.calculate_critical_hit_multiplier()
 
 class Tank(Player):
     def __init__():
