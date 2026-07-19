@@ -46,6 +46,17 @@ class Tank(Player):
         self.vit = 5 + random.randint(0, 5)
         self.int = 2 + random.randint(0, 2)
         self.luck = 0 + random.randint(-6, 6)
+    
+    def calculate_critical_hit_multiplier(self):
+        chance = (self.luck * 0.01) * 0.05
+        overflow = int(chance/1) + 1
+        remaining_chance = chance % 1
+        return overflow + 1 if remaining_chance >= random.random() else overflow
+
+    def attack(self):
+        growth_rate = 1.0175
+        base_damage = 3
+        return base_damage * (growth_rate ** self.str) * self.calculate_critical_hit_multiplier()
 
 class Support(Player):
     def __init__():
@@ -55,6 +66,17 @@ class Support(Player):
         self.vit = 2 + random.randint(0, 2)
         self.int = 5 + random.randint(0, 5)
         self.luck = 0 + random.randint(-6, 6)
+
+    def calculate_critical_hit_multiplier(self):
+        chance = (self.luck * 0.01) * 0.05
+        overflow = int(chance/1) + 1
+        remaining_chance = chance % 1
+        return overflow + 1 if remaining_chance >= random.random() else overflow
+
+    def attack(self):
+        growth_rate = 1.035
+        base_damage = 5
+        return base_damage * (growth_rate ** self.int) * self.calculate_critical_hit_multiplier()
 
 # game loop
 while running:
