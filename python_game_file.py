@@ -44,6 +44,16 @@ class Player:
                 self.luck += roll
             self.stat_rolls -= 1
 
+#Temporary enemy class for testing purposes, will be replaced with a more complex enemy class in the future
+class Enemy:
+    def __init__():
+        self.health = 20 + random.randint(-6, 12)
+        self.str = 0 + random.randint(1, 6)
+        self.vit = 0 + random.randint(1, 6)
+        self.int = 0 + random.randint(1, 6)
+        self.luck = 0 + random.randint(-6, 6)
+
+
 class Vanguard(Player):
     def __init__():
         super().__init__()
