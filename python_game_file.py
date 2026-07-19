@@ -5,7 +5,7 @@ pygame.init()
 
 # intialize the screen with a width and height of 640 pixels
 screen = pygame.display.set_mode((640,640))
-
+clock = pygame.time.Clock()
 running = True
 
 # this create the base player class with the basic stats that the player will have
@@ -64,7 +64,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
+    clock.tick(60) # Limit the frame rate to 60 frames per second
     pygame.display.flip() # Update the display/ basically displays the changes made to the screen
 
 pygame.quit()
