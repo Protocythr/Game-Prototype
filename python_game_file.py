@@ -17,6 +17,30 @@ class Player:
         self.vit = 0
         self.int = 0
         self.luck = 0
+        self.experience = 0
+        self.next_level_experience = 100
+        self.stat_rolls = 1 # how many dice rolls player has that they recieve for level up
+
+    def level_up(self):
+        if self.experience >= self.next_level_experience:
+            self.experience -= self.next_level_experience
+            self.next_level_experience *= 1.5
+            self.stat_rolls += 2
+
+    def roll_stat(self, stat):
+        if self.stat_rolls > 0:
+            roll = random.randint(1, 6)
+            if stat == "health":
+                self.health += roll
+            elif stat == "str":
+                self.str += roll
+            elif stat == "vit":
+                self.vit += roll
+            elif stat == "int":
+                self.int += roll
+            elif stat == "luck":
+                self.luck += roll
+            self.stat_rolls -= 1
 
 class Vanguard(Player):
     def __init__():
