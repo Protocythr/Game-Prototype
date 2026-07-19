@@ -6,6 +6,7 @@
 <h4>py -3.13 -m venv myenv</h4>
 
 <h4>myenv\Scripts\activate</h4>
+<h4>For linux: source myenv/bin/activate</h4>
 
 <h4>pip install -r requirements-dev.txt</h4>
 
