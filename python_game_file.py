@@ -13,12 +13,13 @@ running = True
 # this create the base player class with the basic stats that the player will have
 # do not edit this class to create a subclass
 class Player:
-    def __init__():
-        self.health = 0
+    def __init__(self):
+        self.hp = 0
         self.str = 0
         self.vit = 0
         self.int = 0
         self.luck = 0
+        self.spd = 0
         self.experience = 0
         self.next_level_experience = 100
         self.stat_rolls = 1 # how many dice rolls player has that they recieve for level up
@@ -32,8 +33,8 @@ class Player:
     def roll_stat(self, stat):
         if self.stat_rolls > 0:
             roll = random.randint(1, 6)
-            if stat == "health":
-                self.health += roll
+            if stat == "hp":
+                self.hp += roll
             elif stat == "str":
                 self.str += roll
             elif stat == "vit":
@@ -42,26 +43,30 @@ class Player:
                 self.int += roll
             elif stat == "luck":
                 self.luck += roll
+            elif stat == "spd":
+                self.spd += roll
             self.stat_rolls -= 1
 
 #Temporary enemy class for testing purposes, will be replaced with a more complex enemy class in the future
 class Enemy:
-    def __init__():
-        self.health = 20 + random.randint(-6, 12)
+    def __init__(self):
+        self.hp = 20 + random.randint(-6, 12)
         self.str = 0 + random.randint(1, 6)
         self.vit = 0 + random.randint(1, 6)
         self.int = 0 + random.randint(1, 6)
         self.luck = 0 + random.randint(-6, 6)
+        self.spd = 2 + random.randint(-2, 2)
 
 
 class Vanguard(Player):
-    def __init__():
+    def __init__(self):
         super().__init__()
-        self.health = 20 + random.randint(0, 12)
+        self.hp = 20 + random.randint(0, 12)
         self.str = 5 + random.randint(0, 5)
         self.vit = 3 + random.randint(0, 3)
         self.int = 2 + random.randint(0, 2)
         self.luck = 0 + random.randint(-5, 5)
+        self.spd = 2 + random.randint(-2, 2)
 
     def calculate_critical_hit_multiplier(self):
         chance = (self.luck * 0.01) * 0.05
@@ -75,13 +80,14 @@ class Vanguard(Player):
         return base_damage * (growth_rate ** self.str) * self.calculate_critical_hit_multiplier()
 
 class Tank(Player):
-    def __init__():
+    def __init__(self):
         super().__init__()
-        self.health = 30 + random.randint(0, 12)
+        self.hp = 30 + random.randint(0, 12)
         self.str = 3 + random.randint(0, 2)
         self.vit = 5 + random.randint(0, 5)
         self.int = 2 + random.randint(0, 2)
         self.luck = 0 + random.randint(-6, 6)
+        self.spd = 2 + random.randint(-2, 2)
     
     def calculate_critical_hit_multiplier(self):
         chance = (self.luck * 0.01) * 0.05
@@ -95,13 +101,14 @@ class Tank(Player):
         return base_damage * (growth_rate ** self.str) * self.calculate_critical_hit_multiplier()
 
 class Support(Player):
-    def __init__():
+    def __init__(self):
         super().__init__()
-        self.health = 15 + random.randint(0, 12)
+        self.hp = 15 + random.randint(0, 12)
         self.str = 3 + random.randint(0, 3)
         self.vit = 2 + random.randint(0, 2)
         self.int = 5 + random.randint(0, 5)
         self.luck = 0 + random.randint(-6, 6)
+        self.spd = 2 + random.randint(-2, 2)
 
     def calculate_critical_hit_multiplier(self):
         chance = (self.luck * 0.01) * 0.05
